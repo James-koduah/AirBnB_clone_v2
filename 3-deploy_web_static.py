@@ -7,6 +7,7 @@ from time import strftime
 env.user = 'ubuntu'
 env.hosts = ['100.25.31.18', '34.232.78.18']
 
+
 def do_pack():
     """Create a .tgz archive"""
     try:
@@ -17,6 +18,7 @@ def do_pack():
         return './versions/web_static_{}.tgz'.format(current_time)
     except Exception as e:
         return None
+
 
 def do_deploy(archive_path):
     """Distribute an archive to our web servers"""
@@ -30,14 +32,15 @@ def do_deploy(archive_path):
         sudo('rm -r /data/web_static/releases/{}'
              .format(filename_no_extention))
 
-        sudo('mkdir -p /data/web_static/releases/{}'.format(filename_no_extention))
+        sudo('mkdir -p /data/web_static/releases/{}'
+             .format(filename_no_extention))
         sudo('tar -xzvf /tmp/{} -C /data/web_static/releases/{}'
              .format(filename, filename_no_extention))
 
         """Copy all files from the new sub folder to the main path"""
         sudo('cp -r /data/web_static/releases/{}/web_static/*\
-                /data/web_static/releases/{}'
-                .format(filename_no_extention, filename_no_extention))
+             /data/web_static/releases/{}'
+             .format(filename_no_extention, filename_no_extention))
         sudo('rm -rf /data/web_static/releases/{}/web_static/'
              .format(filename_no_extention))
 
@@ -52,14 +55,15 @@ def do_deploy(archive_path):
         print('---------------')
         return False
 
+
 def deploy():
     """Create a new archive and deploy it
        Create an archive and deploy automatically
     """
     archive = do_pack()
-    if archive == None:
+    if archive is None:
         return False
     dep = do_deploy(archive)
-    if dep == False:
+    if dep is False:
         return False
     return dep
