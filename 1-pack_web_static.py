@@ -1,19 +1,19 @@
 #!/usr/bin/python3
-"""run local commands"""
+""" A module to create an archive of web_static """
 from fabric.api import local
-from datetime import date
 from time import strftime
+from datetime import date
 
 
 def do_pack():
-    """Create a .tgz archive for our hbnb project
-       This is to aid easy deployment
-    """
+    """ Create an archive of the webstatic of our hbnb project more words"""
+    da = strftime("%Y%m%d%H%m%s")
     try:
-        current_time = strftime('%Y%m%d%H%m%s')
-        local('mkdir -p ./versions')
-        local('tar -cvzf ./versions/web_static_{}.tgz ./web_static'
-              .format(current_time))
-        return './versions/web_static_{}.tgz'.format(current_time)
+        local("mkdir -p ./versions")
+        local("tar -cvzf ./versions/web_static_{}.tgz ./web_static"
+              .format(da))
+
+        return "./versions/web_static_{}.tgz".format(da)
+
     except Exception as e:
         return None
