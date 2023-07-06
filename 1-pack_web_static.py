@@ -7,6 +7,7 @@ from time import strftime
 env.user = 'ubuntu'
 env.hosts = ['100.25.31.18', '34.232.78.18']
 
+
 def do_pack():
     """Create a .tgz archive"""
     try:
@@ -17,3 +18,7 @@ def do_pack():
         return './versions/web_static_{}.tgz'.format(current_time)
     except Exception as e:
         return None
+
+def play():
+    run('ls')
+    return True
