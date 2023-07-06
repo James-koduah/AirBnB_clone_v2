@@ -13,7 +13,7 @@ def do_pack():
         local("tar -cvzf ./versions/web_static_{}.tgz ./web_static"
               .format(da))
 
-        return "./versions/web_static_{}.tgz".format(da)
+        return "versions/web_static_{}.tgz".format(da)
 
     except Exception as e:
         return None
