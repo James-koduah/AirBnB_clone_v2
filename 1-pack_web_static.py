@@ -1,11 +1,8 @@
 #!/usr/bin/python3
 """run local commands"""
-from fabric.api import *
+from fabric.api import loca
 from datetime import date
 from time import strftime
-
-env.user = 'ubuntu'
-env.hosts = ['100.25.31.18', '34.232.78.18']
 
 
 def do_pack():
