@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """run local commands"""
-from fabric.api import loca
+from fabric.api import local
 from datetime import date
 from time import strftime
 
